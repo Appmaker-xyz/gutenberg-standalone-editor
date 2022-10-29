@@ -6,7 +6,8 @@ import {
 	BlockList,
 	BlockInspector,
 	WritingFlow,
-	ObserveTyping
+	ObserveTyping,
+	BlockTools
 } from "@wordpress/block-editor";
 import {
 	Popover,
@@ -18,6 +19,7 @@ import SideBar from "../sidebar";
 import { useEffect } from "react";
 
 import "./style.scss";
+import '../blocks/index';
 
 function Editor() {
 	const [blocks, updateBlocks] = useState([]);
@@ -41,13 +43,15 @@ function Editor() {
 							<BlockInspector />
 						</div>
 						<div className="editor-styles-wrapper">
-							<Popover.Slot name="block-toolbar" />
 							<BlockEditorKeyboardShortcuts />
-							<WritingFlow>
-								<ObserveTyping>
-									<BlockList />
-								</ObserveTyping>
-							</WritingFlow>
+							<BlockTools>
+								<WritingFlow>
+									<ObserveTyping>
+										<BlockList />
+									</ObserveTyping>
+								</WritingFlow>
+							</BlockTools>
+							<Popover.Slot name="block-toolbar" />
 						</div>
 						<Popover.Slot />
 					</BlockEditorProvider>
@@ -58,11 +62,3 @@ function Editor() {
 }
 
 export default Editor;
-
- // export default {
- // 	title: 'Playground/Block Editor',
- // };
- //
- // export const _default = () => {
- // 	return <App />;
- // };

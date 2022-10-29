@@ -1,7 +1,5 @@
 import BlockEditor from './block-editor'
-import { registerCoreBlocks } from '@wordpress/block-library';
-
-registerCoreBlocks();
+import './index.css'
 
 function App() {
   return (
