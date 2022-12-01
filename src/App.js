@@ -1,14 +1,8 @@
-import BlockEditor from './block-editor'
-import './index.css'
+import BlockEditor from "./block-editor";
+import "./index.css";
 
 function App() {
-  return (
-   <div>
-        <BlockEditor />
-   </div>
-  );
+  return <BlockEditor />;
 }
 
 export default App;
-
-
