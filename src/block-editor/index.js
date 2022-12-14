@@ -17,7 +17,7 @@ import {
 import "@wordpress/format-library";
 import SideBar from "../sidebar";
 import { useEffect } from "react";
-
+import { ShortcutProvider } from "@wordpress/keyboard-shortcuts";
 import "./style.scss";
 import "../blocks/index";
 
@@ -30,33 +30,35 @@ function Editor() {
 
   return (
     <div className="playground">
-      <SlotFillProvider>
-        <DropZoneProvider>
-          <BlockEditorProvider
-            value={blocks}
-            onInput={updateBlocks}
-            onChange={updateBlocks}
-            settings={{ __experimentalBlockPatterns: [] }}
-          >
-            <SideBar />
-            <div className="playground__sidebar">
-              <BlockInspector />
-            </div>
-            <div className="editor-styles-wrapper">
-              <BlockEditorKeyboardShortcuts />
-              <BlockTools>
-                <WritingFlow>
-                  <ObserveTyping>
-                    <BlockList />
-                  </ObserveTyping>
-                </WritingFlow>
-              </BlockTools>
-              <Popover.Slot name="block-toolbar" />
-            </div>
-            <Popover.Slot />
-          </BlockEditorProvider>
-        </DropZoneProvider>
-      </SlotFillProvider>
+      <ShortcutProvider>
+        <SlotFillProvider>
+          <DropZoneProvider>
+            <BlockEditorProvider
+              value={blocks}
+              onInput={updateBlocks}
+              onChange={updateBlocks}
+              settings={{ __experimentalBlockPatterns: [] }}
+            >
+              <SideBar />
+              <div className="playground__sidebar">
+                <BlockInspector />
+              </div>
+              <div className="editor-styles-wrapper">
+                <BlockEditorKeyboardShortcuts />
+                <BlockTools>
+                  <WritingFlow>
+                    <ObserveTyping>
+                      <BlockList />
+                    </ObserveTyping>
+                  </WritingFlow>
+                </BlockTools>
+                <Popover.Slot name="block-toolbar" />
+              </div>
+              <Popover.Slot />
+            </BlockEditorProvider>
+          </DropZoneProvider>
+        </SlotFillProvider>
+      </ShortcutProvider>
     </div>
   );
 }
