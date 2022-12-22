@@ -29,37 +29,35 @@ function Editor() {
   }, [blocks]);
 
   return (
-    <div className="playground">
-      <ShortcutProvider>
-        <SlotFillProvider>
-          <DropZoneProvider>
-            <BlockEditorProvider
-              value={blocks}
-              onInput={updateBlocks}
-              onChange={updateBlocks}
-              settings={{ __experimentalBlockPatterns: [] }}
-            >
-              <SideBar />
-              <div className="playground__sidebar">
-                <BlockInspector />
-              </div>
-              <div className="editor-styles-wrapper">
-                <BlockEditorKeyboardShortcuts />
-                <BlockTools>
-                  <WritingFlow>
-                    <ObserveTyping>
-                      <BlockList />
-                    </ObserveTyping>
-                  </WritingFlow>
-                </BlockTools>
-                <Popover.Slot name="block-toolbar" />
-              </div>
-              <Popover.Slot />
-            </BlockEditorProvider>
-          </DropZoneProvider>
-        </SlotFillProvider>
-      </ShortcutProvider>
-    </div>
+    <ShortcutProvider className="playground">
+      <SlotFillProvider>
+        <DropZoneProvider>
+          <BlockEditorProvider
+            value={blocks}
+            onInput={updateBlocks}
+            onChange={updateBlocks}
+            settings={{ __experimentalBlockPatterns: [] }}
+          >
+            <SideBar />
+            <div className="playground__sidebar">
+              <BlockInspector />
+            </div>
+            <div className="editor-styles-wrapper">
+              <BlockEditorKeyboardShortcuts />
+              <BlockTools>
+                <WritingFlow>
+                  <ObserveTyping>
+                    <BlockList />
+                  </ObserveTyping>
+                </WritingFlow>
+              </BlockTools>
+              <Popover.Slot name="block-toolbar" />
+            </div>
+            <Popover.Slot />
+          </BlockEditorProvider>
+        </DropZoneProvider>
+      </SlotFillProvider>
+    </ShortcutProvider>
   );
 }
 
