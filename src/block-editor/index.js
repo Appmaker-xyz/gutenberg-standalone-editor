@@ -20,9 +20,10 @@ import { useEffect } from "react";
 import { ShortcutProvider } from "@wordpress/keyboard-shortcuts";
 import "./style.scss";
 import "../blocks/index";
+import { useLocalStorage } from 'react-use';
 
 function Editor() {
-  const [blocks, updateBlocks] = useState([]);
+  const [blocks, updateBlocks, remove] = useLocalStorage('page-home',[]);
   // registerCoreBlocks is in App.js
   useEffect(() => {
     console.log("blocks", blocks);
@@ -36,10 +37,21 @@ function Editor() {
             value={blocks}
             onInput={updateBlocks}
             onChange={updateBlocks}
-            settings={{ __experimentalBlockPatterns: [] }}
+            settings={{ __experimentalBlockPatterns: [],
+              codeEditingEnabled: false,
+              colors:[
+                { name: 'red', color: '#f00' },
+                { name: 'white', color: '#fff' },
+                { name: 'blue', color: '#00f' },
+              ],
+              alignWide: true,
+            //   color:{
+            //   disableCustomColors: false,
+            // } 
+          }}
           >
             <SideBar />
-            <div className="playground__sidebar">
+            <div className="playground__sidebar ">
               <BlockInspector />
             </div>
             <div className="editor-styles-wrapper">
